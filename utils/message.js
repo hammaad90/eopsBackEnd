@@ -1,5 +1,5 @@
 /*
-    Language Resource EN-US
+    Error Messages EN-US
     Created : 7th September 2023
 */
 

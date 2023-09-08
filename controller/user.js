@@ -6,6 +6,7 @@
 // Some needed modules --------- trying removing one
 const userService = require('../services/user')
 const { requestHandler } = require('../utils/utils')
+const { ACCOUNT_TYPE } = require('../utils/constant')
 
 
 

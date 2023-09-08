@@ -7,7 +7,7 @@ const login = require('./login')
 
 
 
-router.use('/register', login)
+router.use('/account', login)
 router.use('/user', authValidator, user)
 
 module.exports = router

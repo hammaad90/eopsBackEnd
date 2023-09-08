@@ -1,6 +1,5 @@
 const jsonwebtoken = require('jsonwebtoken')
 const {jwtSecret} = require('../config/config')
-const httpStatus = require('http-status')
 
 // validate user token and check token provided or not
 const authValidator = function (req, res, next) {

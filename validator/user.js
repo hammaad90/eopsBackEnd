@@ -15,6 +15,13 @@ const validate = (route) => {
                 check('id').exists().trim().notEmpty()
             ]
             break
+        case 'updateUser':
+            validationResponse = [
+                check('first_name').optional().trim(),
+                check('last_name').optional().trim(),
+                check('account_type').optional().trim(),
+            ]
+            break
     }
 
     return validationResponse

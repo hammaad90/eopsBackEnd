@@ -1,0 +1,198 @@
+{
+	"info": {
+		"_postman_id": "354ce3a0-c5be-4869-b94a-eea9975166e4",
+		"name": "shodatEopsBackEnd",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1336194"
+	},
+	"item": [
+		{
+			"name": "SignUp/SignIn",
+			"item": [
+				{
+					"name": "SignUp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\": \"Ved\",\n    \"last_name\": \"Lad\",\n    \"email\": \"vedlad@shodat.com\",\n    \"password\": \"123456789\",\n    \"account_type\": \"ENTERPRISE\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dev}}/api/account/sign-up",
+							"host": [
+								"{{dev}}"
+							],
+							"path": [
+								"api",
+								"account",
+								"sign-up"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SignIn",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"mohammadhammaad@shodat.com\",\n    \"password\": \"123456789\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dev}}/api/account/sign-in",
+							"host": [
+								"{{dev}}"
+							],
+							"path": [
+								"api",
+								"account",
+								"sign-in"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "get User Detail",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJlbWFpbCI6Im1vaGFtbWFkaGFtbWFhZEBzaG9kYXQuY29tIiwiYWNjb3VudF90eXBlIjoiSU5ESVZJRFVBTCIsImV4cGlyZXNJbiI6IjI1OTIwMDAwMDAifSwiaWF0IjoxNjk0MTUwMDI2LCJleHAiOjE2OTY3NDIwMjZ9.2OA5Ifoc6bIVV01kH2smPVT9hxcG9IuG0uTFTxiSd88",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{dev}}/api/user",
+							"host": [
+								"{{dev}}"
+							],
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get list of users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJlbWFpbCI6Im1vaGFtbWFkaGFtbWFhZEBzaG9kYXQuY29tIiwiZXhwaXJlc0luIjoiMjU5MjAwMDAwMCJ9LCJpYXQiOjE2OTQwOTIyODF9.iN5axsXV43BjG17eejat_0a3vl_G-8YDbWvboZd73Jk",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{dev}}/api/user/all?skip=0&limit=10",
+							"host": [
+								"{{dev}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"all"
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Details",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJlbWFpbCI6Im1vaGFtbWFkaGFtbWFhZEBzaG9kYXQuY29tIiwiYWNjb3VudF90eXBlIjoiSU5ESVZJRFVBTCIsImV4cGlyZXNJbiI6IjI1OTIwMDAwMDAifSwiaWF0IjoxNjk0MTUwMDI2LCJleHAiOjE2OTY3NDIwMjZ9.2OA5Ifoc6bIVV01kH2smPVT9hxcG9IuG0uTFTxiSd88",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\": \"Mohammad\",\n    \"last_name\": \"Hammaad\",\n    \"account_type\": \"ENTERPRISE\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dev}}/api/user",
+							"host": [
+								"{{dev}}"
+							],
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User Details",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJlbWFpbCI6Im1vaGFtbWFkaGFtbWFhZEBzaG9kYXQuY29tIiwiYWNjb3VudF90eXBlIjoiSU5ESVZJRFVBTCIsImV4cGlyZXNJbiI6IjI1OTIwMDAwMDAifSwiaWF0IjoxNjk0MTUwMDI2LCJleHAiOjE2OTY3NDIwMjZ9.2OA5Ifoc6bIVV01kH2smPVT9hxcG9IuG0uTFTxiSd88",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{dev}}/api/user",
+							"host": [
+								"{{dev}}"
+							],
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

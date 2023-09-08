@@ -41,6 +41,7 @@ const languageResource = {
 
         userDelete: MESSAGE.DELETE,
         userCreate: MESSAGE.CREATE,
+        userUpdate: MESSAGE.UPDATE,
     }
 }
 

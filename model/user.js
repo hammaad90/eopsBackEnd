@@ -71,17 +71,32 @@ const fetchUserFromEmail = async (email) => {
     }
 }
 
+// Update Administrator Details
+const updateUser = async (id, first_name, last_name, account_type, updated_at) => {
+    try {
+        let query = {
+            text: `UPDATE ${tables.user} SET first_name = ?, last_name = ?, account_type = ?, updated_at = ? WHERE id = ?`,
+            values: [first_name, last_name, account_type, updated_at, id]
+        }
+        const response = await processQuery(query)
+        return response
+    } catch (e) {
+        // throw Error()
+        return messages('errors', 'dbUpdate')
+    }
+}
+
 
 
 
 
 /* Beware while this is uncommented Only professional should use it */
 // Delete a user
-const deleteUser = async (id, updated_on) => {
+const deleteUser = async (id, updated_at) => {
     try {
         let query = {
-            text: `UPDATE ${tables.user} SET is_deleted = true, updated_on = ? WHERE id = ?`,
-            values: [updated_on, id]
+            text: `UPDATE ${tables.user} SET deleted = true, updated_at = ? WHERE id = ?`,
+            values: [updated_at, id]
         }
         const response = await processQuery(query)
         return response
@@ -98,5 +113,6 @@ module.exports = {
     fetchUserList,
     fetchSingleUser,
     fetchUserFromEmail,
-    deleteUser
+    deleteUser,
+    updateUser
 }

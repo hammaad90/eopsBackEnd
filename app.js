@@ -4,6 +4,7 @@
 */
 
 const express = require('express')
+const cors = require('cors')
 const { port } = require('./config/config')
 const indexRoutes = require('./routes/route')
 const app = express()
@@ -11,6 +12,7 @@ const app = express()
 // Middlewares
 app.use(express.json({ limit: '10mb' })) // for parsing application/json
 app.use(express.urlencoded({ extended: true, limit: '10mb' })) // for parsing application/x-www-form-urlencoded
+app.use(cors())
 
 app.use('/api', indexRoutes)
 

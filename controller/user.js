@@ -26,3 +26,20 @@ module.exports.fetchSingleUser = async (req, res) => {
         return await userService.fetchSingleUser(id)
     })
 }
+
+// Module for updating details of single user
+module.exports.updateUser = async (req, res) => {
+    return await requestHandler(req, res, async () => {
+        let { id } = req.token.user
+        let { first_name, last_name, account_type} = req.body
+        return await userService.updateUser(id, first_name, last_name, account_type)
+    })
+}
+
+// Module for deleting user
+module.exports.deleteUser = async (req, res) => {
+    return await requestHandler(req, res, async () => {
+        let { id } = req.token.user
+        return await userService.deleteUser(id)
+    })
+}

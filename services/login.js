@@ -17,7 +17,7 @@ const httpStatus = require('http-status')
 
 // Fetch details of single user
 const signUpUser = async (first_name, last_name, email, password, account_type) => {
-    let created_at = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '')
+    let created_at = moment.utc().format("YYYY-MM-DD HH:mm:ss")
     let updated_at = created_at
     password = generateHash(password)
     // check user with same email exist or not:

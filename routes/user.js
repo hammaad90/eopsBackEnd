@@ -23,6 +23,11 @@ router.get(routeSection, userController.fetchSingleUser)
 // user list
 router.get(routeSection + '/all', userController.fetchUsers)
 
+// update user details
+router.put(routeSection, userValidator.validate('updateUser'), userController.updateUser)
+
+// delete user
+router.delete(routeSection, userController.deleteUser)
 
 /*---------------------------- End User Section Section -------------------------*/
 

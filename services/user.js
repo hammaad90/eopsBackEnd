@@ -25,6 +25,7 @@ const fetchSingleUser = async (id) => {
             data.last_name = responseData.last_name ? responseData.last_name : ''
             data.account_type = responseData.account_type ? responseData.account_type : ''
             data.created_at = responseData.created_at ? responseData.created_at : ''
+            data.updated_at = responseData.updated_at ? responseData.updated_at : ''
             response = {
                 status: 200,
                 data: data
@@ -58,6 +59,7 @@ const fetchUserList = async (offset, limit) => {
             data.last_name = response[i] ? response[i].last_name : ''
             data.account_type = response[i] ? response[i].account_type : ''
             data.created_at = (response[i].created_at) ? response[i].created_at : ''
+            data.updated_at = (response[i].updated_at) ? response[i].updated_at : ''
             responseData.push(data)
         }
 
@@ -75,9 +77,74 @@ const fetchUserList = async (offset, limit) => {
 }
 
 
+// update user:
+const updateUser = async (id, first_name, last_name, account_type) => {
+    let response = await user.fetchSingleUser(id)
+    if (response.length == 1) {
+        let row = response[0]
+
+        first_name = first_name ? first_name : row.first_name
+        last_name = last_name ? last_name : row.last_name
+        account_type = account_type ? account_type : row.account_type
+
+        let updated_at = moment.utc().format("YYYY-MM-DD HH:mm:ss")
+
+        response = await user.updateUser(id, first_name, last_name, account_type, updated_at)
+        if (response.affectedRows == 1) {
+            response = {
+                status: 200,
+                message: messages('success', 'userUpdate')
+            }
+        } else {
+            response = {
+                status: 401,
+                message: messages('errors', 'notFound')
+            }
+        }
+    } else {
+        response = {
+            status: 401,
+            message: messages('errors', 'notFound')
+        }
+    }
+
+    return response
+}
+
+// delete user:
+const deleteUser = async (id) => {
+    let response = await user.fetchSingleUser(id)
+    if (response.length == 1) {
+        let updated_at = moment.utc().format("YYYY-MM-DD HH:mm:ss")
+
+        response = await user.deleteUser(id, updated_at)
+
+        if (response.affectedRows == 1) {
+            response = {
+                status: 200,
+                message: messages('success', 'userDelete')
+            }
+        } else {
+            response = {
+                status: 401,
+                message: messages('errors', 'dbDelete')
+            }
+        }
+    } else {
+        response = {
+            status: 401,
+            message: messages('errors', 'notFound')
+        }
+    }
+
+    return response
+}
+
 // Exports ------------- Needed utmost
 
 module.exports = {
     fetchSingleUser,
-    fetchUserList
+    fetchUserList,
+    updateUser,
+    deleteUser
 }

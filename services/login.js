@@ -16,7 +16,7 @@ const httpStatus = require('http-status')
 
 
 // Fetch details of single user
-const signUpUser = async (first_name, last_name, email, password) => {
+const signUpUser = async (first_name, last_name, email, password, account_type) => {
     let created_at = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '')
     let updated_at = created_at
     password = generateHash(password)
@@ -29,7 +29,7 @@ const signUpUser = async (first_name, last_name, email, password) => {
         }
     }
 
-    response = await user.createUser(first_name, last_name, email, password, created_at, updated_at)
+    response = await user.createUser(first_name, last_name, email, password, account_type, created_at, updated_at)
     if (response.affectedRows > 0) {
         response = {
             status: httpStatus.OK,
@@ -61,12 +61,13 @@ const signInleUser = async (email, password) => {
                 user: {
                     id: response[0].id,
                     email: response[0].email,
+                    account_type: response[0].account_type,
                     expiresIn: TokenDuration,
                 },
             }, jwtSecret, { expiresIn: TokenDuration });
         return response = {
             status: httpStatus.OK,
-            data: { id: response[0].id, email: response[0].email, authToken }
+            data: { id: response[0].id, email: response[0].email, account_type: response[0].account_type, authToken }
         }
     }
 

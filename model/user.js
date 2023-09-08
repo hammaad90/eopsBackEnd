@@ -9,11 +9,11 @@ const {processQuery, tables} = require('../config/database')
 const { messages } = require('../utils/utils')
 
 // Create a new usser
-const createUser = async (first_name, last_name, email, password, created_at, updated_at) => {
+const createUser = async (first_name, last_name, email, password, account_type, created_at, updated_at) => {
     try {
         let query = {
-            text: `INSERT INTO ${tables.user} (first_name, last_name, email, password, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?)`,
-            values: [first_name, last_name, email, password, created_at, updated_at]
+            text: `INSERT INTO ${tables.user} (first_name, last_name, email, password, account_type, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?)`,
+            values: [first_name, last_name, email, password, account_type, created_at, updated_at]
         }
         const response = await processQuery(query)
         return response
@@ -29,7 +29,7 @@ const createUser = async (first_name, last_name, email, password, created_at, up
 const fetchUserList = async (offset, limit) => {
     try {
         let query = {
-            text: `SELECT id, first_name, last_name, email, created_at, updated_at FROM ${tables.user} WHERE deleted = false ORDER BY created_at DESC LIMIT ?, ?`,
+            text: `SELECT id, first_name, last_name, email, account_type, created_at, updated_at FROM ${tables.user} WHERE deleted = false ORDER BY created_at DESC LIMIT ?, ?`,
             values: [offset, limit]
         }
         const response = await processQuery(query)
@@ -44,7 +44,7 @@ const fetchUserList = async (offset, limit) => {
 const fetchSingleUser = async (id) => {
     try {
         let query = {
-            text: `SELECT id, first_name, last_name, email, created_at, updated_at FROM ${tables.user} WHERE id = ? AND deleted = false  ORDER BY created_at DESC`,
+            text: `SELECT id, first_name, last_name, email, account_type, created_at, updated_at FROM ${tables.user} WHERE id = ? AND deleted = false  ORDER BY created_at DESC`,
             values: [id]
         }
         const response = await processQuery(query)
@@ -59,7 +59,7 @@ const fetchSingleUser = async (id) => {
 const fetchUserFromEmail = async (email) => {
     try {
         let query = {
-            text: `SELECT id, first_name, last_name, email, password, created_at, updated_at FROM ${tables.user} WHERE email = ?`,
+            text: `SELECT id, first_name, last_name, email, password, account_type, created_at, updated_at FROM ${tables.user} WHERE email = ?`,
             values: [email]
         }
 

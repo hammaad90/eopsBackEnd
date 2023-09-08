@@ -5,10 +5,8 @@
 
 // Some needed modules --------- trying removing one
 const user = require('../model/user')
-const { TokenDuration } = require('../config/config')
-const { messages, generateHash } = require('../utils/utils')
+const { messages } = require('../utils/utils')
 const moment = require('moment')
-const jsonwebtoken = require('jsonwebtoken')
 
 
 
@@ -25,6 +23,7 @@ const fetchSingleUser = async (id) => {
             data.email = responseData.email ? responseData.email : ''
             data.first_name = responseData.first_name ? responseData.first_name : ''
             data.last_name = responseData.last_name ? responseData.last_name : ''
+            data.account_type = responseData.account_type ? responseData.account_type : ''
             data.created_at = responseData.created_at ? responseData.created_at : ''
             response = {
                 status: 200,
@@ -56,6 +55,8 @@ const fetchUserList = async (offset, limit) => {
             data.id = response[i] ? response[i].id : ''
             data.email = response[i] ? response[i].email : ''
             data.first_name = response[i] ? response[i].first_name : ''
+            data.last_name = response[i] ? response[i].last_name : ''
+            data.account_type = response[i] ? response[i].account_type : ''
             data.created_at = (response[i].created_at) ? response[i].created_at : ''
             responseData.push(data)
         }

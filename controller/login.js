@@ -12,8 +12,8 @@ const { requestHandler } = require('../utils/utils')
 // Module for fetching list of user
 module.exports.signUpUser = async (req, res) => {
     return await requestHandler(req, res, async () => {
-        const {first_name, last_name, email, password} = req.body
-        return await loginService.signUpUser(first_name, last_name, email, password)
+        const {first_name, last_name, email, password, account_type} = req.body
+        return await loginService.signUpUser(first_name, last_name, email, password, account_type)
     })
 }
 

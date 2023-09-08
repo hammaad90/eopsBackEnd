@@ -15,6 +15,7 @@ const validate = (route) => {
                 check('first_name').exists().trim().isString(),
                 check('last_name').exists().trim().isString(),
                 check('email').exists().trim().isEmail(),
+                check('account_type').exists().trim(),
                 check('password').exists().trim().isLength({ min: 3 })
             ]
             break
